@@ -1,20 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Mini App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { text-align: center; font-family: sans-serif; background: var(--tg-theme-bg-color); color: var(--tg-theme-text-color); }
-        button { padding: 10px; background: var(--tg-theme-button-color); color: var(--tg-theme-button-text-color); border: none; border-radius: 5px; }
+        /* Стили прямо здесь для удобства, либо вынеси в style.css */
+        :root {
+            --bg: var(--tg-theme-bg-color, #ffffff);
+            --text: var(--tg-theme-text-color, #000000);
+            --hint: var(--tg-theme-hint-color, #999999);
+            --btn: var(--tg-theme-button-color, #2481cc);
+            --btn-text: var(--tg-theme-button-text-color, #ffffff);
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(0,0,0,0.05);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            width: 80%;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            background-color: var(--btn);
+            color: var(--btn-text);
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .hint {
+            color: var(--hint);
+            font-size: 0.8em;
+        }
     </style>
 </head>
 <body>
-    <h1>Привет, <span id="user"></span>!</h1>
-    <button onclick="Telegram.WebApp.close()">Закрыть</button>
 
-    <script>
-        let tg = window.Telegram.WebApp;
-        tg.expand(); // Развернуть на весь экран
-        document.getElementById("user").innerText = tg.initDataUnsafe.user?.first_name || "Пользователь";
-    </script>
+    <div class="card">
+        <h1>Привет, <span id="username">Гость</span>!</h1>
+        <p class="hint">Это расширенный шаблон Mini App</p>
+    </div>
+
+    <div style="width: 80%;">
+        <button id="vibeBtn">Повибрировать</button>
+        <button id="closeBtn">Закрыть приложение</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
