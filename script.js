@@ -1,25 +1,38 @@
+// Инициализация Telegram WebApp
 const tg = window.Telegram.WebApp;
-tg.expand();
 
-// Основная кнопка Telegram (внизу экрана)
-tg.MainButton.setText("ОТПРАВИТЬ ДАННЫЕ").show();
-tg.MainButton.onClick(() => {
-    tg.sendData("Какая-то важная информация"); 
-    // sendData работает только если Mini App открыт через KeyboardButton
-});
+// Сообщаем Telegram, что приложение готово
+tg.ready();
+tg.expand(); // Разворачиваем на всё окно
 
-// Работа с данными пользователя
+// Устанавливаем имя пользователя из данных TG
 const user = tg.initDataUnsafe?.user;
 if (user) {
-    document.getElementById("user").innerText = user.first_name;
+    document.getElementById("username").innerText = user.first_name;
 }
 
-// Пример функции: вибрация (Haptic Feedback)
-function triggerVibration() {
-    tg.HapticFeedback.impactOccurred('heavy');
-}
+// 1. Управление Главной кнопкой (MainButton) внизу экрана
+tg.MainButton.setText("ПОДТВЕРДИТЬ");
+tg.MainButton.show();
+tg.MainButton.onClick(() => {
+    tg.showAlert("Вы нажали на главную кнопку!");
+});
 
-// Пример функции: открытие ссылок внутри TG
-function openInternalLink() {
-    tg.openTelegramLink('https://t.me/durov');
-}
+// 2. Вибрация при нажатии на кнопку в интерфейсе
+document.getElementById("vibeBtn").addEventListener("click", () => {
+    tg.HapticFeedback.notificationOccurred('success');
+});
+
+// 3. Закрытие приложения
+document.getElementById("closeBtn").addEventListener("click", () => {
+    tg.close();
+});
+
+// 4. Кнопка "Назад" в заголовке (появляется и исчезает)
+tg.BackButton.show();
+tg.BackButton.onClick(() => {
+    tg.showAlert("Кнопка назад пока просто показывает это окно");
+});
+
+// Настройка цвета статус-бара в тон темы
+tg.setHeaderColor('secondary_bg_color');
