@@ -13,11 +13,11 @@ if (user) {
 
 const greetings = ["Привет", "Рады видеть"];
 
-const greetingE1 = document.getElementById("greeting");
+const greetingEl = document.getElementById("greeting");
 
-if (greetingE1) {
+if (greetingEl) {
     const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
-    greetingE1.textContext = randomGreeting;
+    greetingEl.textContent = randomGreeting;
 }
 // 1. Управление Главной кнопкой (MainButton) внизу экрана
 tg.MainButton.setText("ПОДТВЕРДИТЬ");
