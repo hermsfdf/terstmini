@@ -30,6 +30,13 @@ if (vibeBtn) {
     });
 }
 
+const closeBtn = document.getElementById("closeBtn")
+if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+        tg.close()
+    });
+}
+
 tg.BackButton.show();
 tg.BackButton.onClick(() => {
     tg.showAlert("Кнопка пока не работает");
