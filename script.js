@@ -22,6 +22,9 @@ tg.MainButton.onClick(() => {
 document.getElementById("vibeBtn").addEventListener("click", () => {
     tg.showAlert("Кууу");
     tg.HapticFeedback.notificationOccurred('success');
+    tg.HapticFeedback.notificationOccurred('success');
+    tg.HapticFeedback.notificationOccurred('success');
+    tg.HapticFeedback.notificationOccurred('success');
 });
 
 // 3. Закрытие приложения
