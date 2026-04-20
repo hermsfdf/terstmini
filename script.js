@@ -20,6 +20,7 @@ if (greetingEl) {
     greetingEl.textContent = randomGreeting;
 }
 // 1. Управление Главной кнопкой (MainButton) внизу экрана
+
 tg.MainButton.setText("ПОДТВЕРДИТЬ");
 tg.MainButton.show();
 tg.MainButton.onClick(() => {
@@ -28,15 +29,22 @@ tg.MainButton.onClick(() => {
 
 
 // 2. Вибрация при нажатии на кнопку в интерфейсе
-document.getElementById("vibeBtn").addEventListener("click", () => {
-    tg.showAlert("В разработке");
-    tg.HapticFeedback.notificationOccurred('success');
-});
+const videBtn = document.getElementById("videBtn");
+if (videBtn) {
+
+    vibeBtn.addEventListener.addEventListener("click", () => {
+        tg.showAlert("В разработке");
+        tg.HapticFeedback.notificationOccurred('success');
+    });
+}
 
 // 3. Закрытие приложения
-document.getElementById("closeBtn").addEventListener("click", () => {
-    tg.close();
-});
+const closeBtn = document.getElementById("closeBtn")
+if (closeBtn) {
+    document.addEventListener("click", () => {
+        tg.close();
+    });
+}
 
 // 4. Кнопка "Назад" в заголовке (появляется и исчезает)
 tg.BackButton.show();
