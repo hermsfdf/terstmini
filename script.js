@@ -11,12 +11,18 @@ if (user) {
     document.getElementById("username").innerText = user.first_name;
 }
 
+const greeting = ["Привет", "Рады видеть"];
+const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+
+document.getElementById("greeting").textContent = randomGreeting;
+
 // 1. Управление Главной кнопкой (MainButton) внизу экрана
 tg.MainButton.setText("ПОДТВЕРДИТЬ");
 tg.MainButton.show();
 tg.MainButton.onClick(() => {
     tg.showAlert("Вы нажали на главную кнопку!");
 });
+
 
 // 2. Вибрация при нажатии на кнопку в интерфейсе
 document.getElementById("vibeBtn").addEventListener("click", () => {
