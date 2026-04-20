@@ -39,7 +39,7 @@ if (closeBtn) {
 
 tg.BackButton.show();
 tg.BackButton.onClick(() => {
-    tg.openTelegramLink("https://t.me/FlarionMinecraft_Bot");;
+    tg.openTelegramLink("https://t.me/FlarionMinecraft_Bot");
 });
 
 tg.setHeaderColor('secondary_bg_color');
