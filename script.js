@@ -1,56 +1,38 @@
-// Инициализация Telegram WebApp
 const tg = window.Telegram.WebApp;
 
-// Сообщаем Telegram, что приложение готово
 tg.ready();
-tg.expand(); // Разворачиваем на всё окно
+tg.expand();
 
-// Устанавливаем имя пользователя из данных TG
 const user = tg.initDataUnsafe?.user;
-if (user) {
-    document.getElementById("username").innerText = user.first_name;
+const userNameEl = document.getElementById("username");
+if (user && userNameEl) {
+    userNameEl.innerText = user.first_name;
 }
 
-const greetings = ["Привет", "Рады видеть"];
-
+const greetings = ["Привет", "Рады видеть", "Ассалам алейкум", "Будь добрее сегодня"];
 const greetingEl = document.getElementById("greeting");
-
-if (greetingEl) {
-    const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+if (greeting) {
+    const randomGreeting = greetings[Math.florr(Math.random() * greetings.length)];
     greetingEl.textContent = randomGreeting;
 }
-// 1. Управление Главной кнопкой (MainButton) внизу экрана
 
-tg.MainButton.setText("ПОДТВЕРДИТЬ");
+tg.MainButton.setText("SWEGENSTAN");
 tg.MainButton.show();
 tg.MainButton.onClick(() => {
-    tg.showAlert("Вы нажали на главную кнопку!");
+    tg.showAlert("Вы нажали на кнопку");
 });
 
-
-// 2. Вибрация при нажатии на кнопку в интерфейсе
-const videBtn = document.getElementById("videBtn");
-if (videBtn) {
-
-    vibeBtn.addEventListener.addEventListener("click", () => {
+const vibeBtn = document.getElementById("vibeBtn")
+if (vibeBtn) {
+    vibeBtn.addEventListener("click", () => {
         tg.showAlert("В разработке");
-        tg.HapticFeedback.notificationOccurred('success');
+        tg.HapticFeedBack.notificationOccurred('success');
     });
 }
 
-// 3. Закрытие приложения
-const closeBtn = document.getElementById("closeBtn")
-if (closeBtn) {
-    document.addEventListener("click", () => {
-        tg.close();
-    });
-}
-
-// 4. Кнопка "Назад" в заголовке (появляется и исчезает)
 tg.BackButton.show();
 tg.BackButton.onClick(() => {
-    tg.showAlert("Кнопка назад пока просто показывает это окно");
+    tg.showAlert("Кнопка пока не работает");
 });
 
-// Настройка цвета статус-бара в тон темы
 tg.setHeaderColor('secondary_bg_color');
