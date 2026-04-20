@@ -20,10 +20,7 @@ tg.MainButton.onClick(() => {
 
 // 2. Вибрация при нажатии на кнопку в интерфейсе
 document.getElementById("vibeBtn").addEventListener("click", () => {
-    tg.showAlert("Кууу");
-    tg.HapticFeedback.notificationOccurred('success');
-    tg.HapticFeedback.notificationOccurred('success');
-    tg.HapticFeedback.notificationOccurred('success');
+    tg.showAlert("В разработке");
     tg.HapticFeedback.notificationOccurred('success');
 });
 
