@@ -11,7 +11,7 @@ if (user) {
     document.getElementById("username").innerText = user.first_name;
 }
 
-const greeting = ["Привет", "Рады видеть"];
+const greetings = ["Привет", "Рады видеть"];
 
 const greetingE1 = document.getElementById("greeting")
 
