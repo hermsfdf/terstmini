@@ -13,7 +13,7 @@ if (user) {
 
 const greetings = ["Привет", "Рады видеть"];
 
-const greetingE1 = document.getElementById("greeting")
+const greetingE1 = document.getElementById("greeting");
 
 if (greetingE1) {
     const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
