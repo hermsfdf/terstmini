@@ -102,8 +102,7 @@ function toggleAdminModal() {
     modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
 }
 
-function addNewItem() {
-
+async function addNewItem() {
     const img = document.getElementById('item-img').value;
     const title = document.getElementById('item-title').value;
     const desc = document.getElementById('item-desc').value;
@@ -111,28 +110,29 @@ function addNewItem() {
 
     if(!img || !title || !price) return alert("Заполни поля");
 
-    const container = document.querySelector('#page1 .content-container');
+    try {
+        // 1. Отправляем в базу (добавили desc, чтобы описание сохранялось)
+        await db.collection('products').add({
+            title: title,
+            price: price,
+            img: img,
+            desc: desc,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp() // Чтобы товары шли по порядку
+        });
 
-    const cardHtml = `
-        <div class="card">
-            <img src="${img}" alt="${title}">
-            <div class="card-info">
-                <h3 class="card-title">${title}</h3>
-                <p class="card-description">${desc}</p>
-                <div class="card-price">${price}</div>
-                <button class="buy-btn" onclick="alert('Добавлено!')">Купить</button>
-            </div>
-        </div>
-    `;
+        alert("Товар успешно сохранен в базе!");
+        
+        // 2. Закрываем модалку и чистим поля
+        toggleAdminModal();
+        ['item-img', 'item-title', 'item-desc', 'item-price'].forEach(id => document.getElementById(id).value = '');
 
-    container.insertAdjacentHTML('afterbegin', cardHtml);
-    toggleAdminModal();
+        // 3. (Опционально) Можно вызвать функцию загрузки товаров, чтобы новый сразу появился
+        // loadProducts(); 
 
-    document.getElementById('item-img').value = '';
-    document.getElementById('item-title').value = '';
-    document.getElementById('item-desc').value = '';
-    document.getElementById('item-price').value = '';
-
+    } catch (error) {
+        console.error("Ошибка при добавлении:", error);
+        alert("Произошла ошибка при сохранении!");
+    }
 }
 
 // Инициализация первой страницы
