@@ -9,7 +9,13 @@ const userNameEl = document.getElementById("username");
 if (user && userNameEl) {
     userNameEl.innerText = user.first_name;
 }
-
+// Проверка на админа
+if (user && user.id === ADMIN_ID) {
+    const adminBtn = document.getElementById('admin-add-btn');
+    if (adminBtn) {
+        adminBtn.style.display = 'block';
+    }
+}
 const greetings = ["Привет", "Рады видеть", "Ассалам алейкум", "Будь добрее сегодня", "Вы находитесь в уголовном розыске Уганды", "Ну купи скинчик"];
 const greetingEl = document.getElementById("greeting");
 if (greetingEl) {
