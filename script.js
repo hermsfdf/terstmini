@@ -1,24 +1,23 @@
         // Инициализация Telegram WebApp
 const tg = window.Telegram.WebApp;
-const ADMIN_ID = 1378112233; // Твой ID
-
+const ADMIN_ID = 1378112233; 
 tg.expand();
 
-// Ждем полной загрузки страницы, прежде чем искать кнопку
-window.addEventListener('load', () => {
+// 1. Приветствие и проверка админа
+window.addEventListener('DOMContentLoaded', () => {
     const user = tg.initDataUnsafe?.user;
+    const userNameEl = document.getElementById("username");
     const adminBtn = document.getElementById('admin-add-btn');
 
-    console.log("User ID:", user?.id); // Это поможет тебе увидеть свой ID в консоли (если подключен дебаг)
+    if (user && userNameEl) userNameEl.innerText = user.first_name;
 
-    // ПРОВЕРКА: Если зашел админ ИЛИ если мы в обычном браузере (для теста)
-    if (user?.id === ADMIN_ID || !user) {
-        if (adminBtn) {
-            adminBtn.style.setProperty('display', 'block', 'important');
-            console.log("Кнопка админа включена");
-        }
+    // Показываем кнопку, если админ ИЛИ если открыто в браузере (для теста)
+    if (!user || user.id === ADMIN_ID) {
+        if (adminBtn) adminBtn.style.display = 'block';
     }
 });
+
+
 const greetings = ["Привет", "Рады видеть", "Ассалам алейкум", "Будь добрее сегодня", "Вы находитесь в уголовном розыске Уганды", "Ну купи скинчик"];
 const greetingEl = document.getElementById("greeting");
 if (greetingEl) {
@@ -44,31 +43,25 @@ function openPage(pageNum, btn) {
 }
 
 function goToPage(pageId) {
-    const pages = document.querySelectorAll('.page');
-    
     // Скрываем все страницы
-    pages.forEach(page => {
+    document.querySelectorAll('.page').forEach(page => {
         page.style.display = 'none';
         page.classList.remove('active');
     });
 
-    // Показываем нужную страницу
+    // Показываем нужную
     const activePage = document.getElementById(pageId);
     if (activePage) {
-        // Используем flex вместо block, чтобы цифры 1,2,3... 
-        // оставались по центру экрана, как в стилях
-        activePage.style.display = 'flex'; 
+        activePage.style.display = 'flex';
         activePage.classList.add('active');
     }
 
-    // Логика кнопки "Назад" (сейчас она везде скрывается по твоему коду)
-    if (pageId === 'page1') {
-        tg.BackButton.hide();
-    } else {
-        tg.BackButton.hide();
+    // Кнопка "+" видна ТОЛЬКО на первой странице
+    const adminBtn = document.getElementById('admin-add-btn');
+    if (adminBtn && (tg.initDataUnsafe?.user?.id === ADMIN_ID || !tg.initDataUnsafe?.user)) {
+        adminBtn.style.display = (pageId === 'page1') ? 'block' : 'none';
     }
 
-    // Добавим визуальный акцент на кнопках меню
     updateNavButtons(pageId);
 }
 
@@ -76,50 +69,40 @@ function goToPage(pageId) {
 function updateNavButtons(pageId) {
     const buttons = document.querySelectorAll('.nav-btn');
     buttons.forEach((btn, index) => {
-        if (pageId === `page${index + 1}`) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
+        btn.classList.toggle('active', pageId === `page${index + 1}`);
     });
 }
 
 function toggleAdminModal() {
-        const modal = document.getElementById('admin-modal');
-        modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+    const modal = document.getElementById('admin-modal');
+    modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
 }
 
 function addNewItem() {
-        const img = document.getElementById('item-img').value;
-        const title = document.getElementById('item-title').value;
-        const desc = document.getElementById('item-desc').value;
-        const price = document.getElementById('item-price').value;
+    const img = document.getElementById('item-img').value;
+    const title = document.getElementById('item-title').value;
+    const desc = document.getElementById('item-desc').value;
+    const price = document.getElementById('item-price').value;
 
-        if(!img || !title || !price) return alert("Заполни поля");
+    if(!img || !title || !price) return alert("Заполни поля");
 
-        const container = document.querySelector('#page1 .content-container');
-        const cardHtml = `
-                <div class="card">
-                    <img src="${img}" alt="${title}">
-                    <div class="card-info">
-                        <h3 class="card-title">${title}</h3>
-                        <p class="card-description">${desc}</p>
-                        <div class="card-price">${price}</div>
-                        <button class="buy-btn" onclick="alert('Добавлено!')">Купить</button>
-                    </div>
-                </div>
-            `;
+    const container = document.querySelector('#page1 .content-container');
+    const cardHtml = `
+        <div class="card">
+            <img src="${img}" alt="${title}">
+            <div class="card-info">
+                <h3 class="card-title">${title}</h3>
+                <p class="card-description">${desc}</p>
+                <div class="card-price">${price}</div>
+                <button class="buy-btn" onclick="alert('Добавлено!')">Купить</button>
+            </div>
+        </div>`;
 
-        container.insertAdjacentHTML('afterbegin', cardHtml);
-        toggleAdminModal();
-
-        document.getElementById('item-img').value = '';
-        document.getElementById('item-title').value = '';
-        document.getElementById('item-desc').value = '';
-        document.getElementById('item-price').value = '';
+    container.insertAdjacentHTML('afterbegin', cardHtml);
+    toggleAdminModal();
+    
+    // Очистка
+    ['item-img', 'item-title', 'item-desc', 'item-price'].forEach(id => document.getElementById(id).value = '');
 }
         
-
-// Инициализация первой страницы при запуске
-goToPage('page1');
 
