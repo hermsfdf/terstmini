@@ -31,3 +31,47 @@ function openPage(pageNum, btn) {
         tg.HapticFeedback.impactOccurred('light');
     }
 }
+
+function goToPage(pageId) {
+    const pages = document.querySelectorAll('.page');
+    
+    // Скрываем все страницы
+    pages.forEach(page => {
+        page.style.display = 'none';
+        page.classList.remove('active');
+    });
+
+    // Показываем нужную страницу
+    const activePage = document.getElementById(pageId);
+    if (activePage) {
+        // Используем flex вместо block, чтобы цифры 1,2,3... 
+        // оставались по центру экрана, как в стилях
+        activePage.style.display = 'flex'; 
+        activePage.classList.add('active');
+    }
+
+    // Логика кнопки "Назад" (сейчас она везде скрывается по твоему коду)
+    if (pageId === 'page1') {
+        tg.BackButton.hide();
+    } else {
+        tg.BackButton.hide();
+    }
+
+    // Добавим визуальный акцент на кнопках меню
+    updateNavButtons(pageId);
+}
+
+// Функция для подсветки активной кнопки в меню
+function updateNavButtons(pageId) {
+    const buttons = document.querySelectorAll('.nav-btn');
+    buttons.forEach((btn, index) => {
+        if (pageId === `page${index + 1}`) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+}
+
+// Инициализация первой страницы при запуске
+goToPage('page1');
