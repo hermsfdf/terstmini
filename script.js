@@ -22,14 +22,10 @@ tg.MainButton.onClick(() => {
     tg.showAlert("Вы нажали на кнопку");
 });
 
-function openSecond() {
-    document.getElementById('mainMenu').style.display = 'none';
-    document.getElementById('secondMenu').style.display = 'block';
-}
-function back() {
-    document.getElementById('secondMenu').style.display = 'none';
-    document.getElementById('mainMenu').style.display = 'block';
-}
+function showTab(tab) {
+    document.getElementById('home').style.display = 'none';
+    document.getElementById('profile').style.display = 'none';
+    document.GetElementById(tab).style.display = 'block';
 
 const vibeBtn = document.getElementById("vibeBtn")
 if (vibeBtn) {
