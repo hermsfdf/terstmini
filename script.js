@@ -16,12 +16,6 @@ if (greetingEl) {
     greetingEl.textContent = randomGreeting;
 }
 
-tg.MainButton.setText("SWEGENSTAN");
-tg.MainButton.show();
-tg.MainButton.onClick(() => {
-    tg.showAlert("Вы нажали на кнопку");
-});
-
 function goToPage(pageId) {
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => page.style.display = 'none');
