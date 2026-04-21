@@ -128,19 +128,21 @@
         }
 
         #admin-add-btn {
+            display: none; /* Скрыта по умолчанию */
             position: fixed;
-            bottom: 80px;
+            bottom: 80px; /* Над нижним меню */
             right: 20px;
             width: 60px;
             height: 60px;
-            background: #00d2ff;
+            background-color: #00d2ff;
             color: #000;
             border-radius: 50%;
             border: none;
-            font-size: 30px;
+            font-size: 35px;
             font-weight: bold;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,210,255,0.4);
+            z-index: 9999; /* Поверх всего */
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,210,255,0.5);
         }
 
         .modal {
