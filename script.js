@@ -1,49 +1,28 @@
+        // Инициализация Telegram WebApp
 const tg = window.Telegram.WebApp;
-
-tg.ready();
-tg.expand();
+tg.expand(); // Развернуть на весь экран
 
 const user = tg.initDataUnsafe?.user;
-const userNameEl = document.getElementById("username");
-if (user && userNameEl) {
-    userNameEl.innerText = user.first_name;
-}
-
-const greetings = ["Привет", "Рады видеть", "Ассалам алейкум", "Будь добрее сегодня"];
-const greetingEl = document.getElementById("greeting");
-if (greetingEl) {
-    const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
-    greetingEl.textContent = randomGreeting;
-}
-
-function goToPage(pageId) {
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(page => page.style.display = 'none');
-
-    const activePage = document.getElementById(pageId);
-    if (activePage) {
-        activePage.style.display = 'block';
+const greetingElement = document.getElementById('greeting');
+        
+if (user && user.first_name) {
+     greetingElement.innerText = `Ассалам алейкум, ${user.first_name}!`;
+} else {
+    greetingElement.innerText = `Ассалам алейкум, Гость!`;
     }
-    if (pageId === 'page1') {
-            tg.BackButton.hide();
-        } else {
-            tg.BackButton.hide();
-        }
+
+        // Функция переключения страниц
+function openPage(pageNum, btn) {
+            // Убираем активный класс у всех страниц и кнопок
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+
+            // Добавляем активный класс выбранным
+    document.getElementById('page' + pageNum).classList.add('active');
+    btn.classList.add('active');
+
+            // Легкая вибрация при нажатии (только в Telegram)
+    if (tg.HapticFeedback) {
+        tg.HapticFeedback.impactOccurred('light');
     }
-    
-const vibeBtn = document.getElementById("vibeBtn")
-if (vibeBtn) {
-    vibeBtn.addEventListener("click", () => {
-        tg.showAlert("В разработке");
-        tg.HapticFeedback.notificationOccurred('success');
-    });
 }
-
-const closeBtn = document.getElementById("closeBtn")
-if (closeBtn) {
-    closeBtn.addEventListener("click", () => {
-        tg.close()
-    });
-}
-
-tg.setHeaderColor('secondary_bg_color');
