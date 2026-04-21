@@ -3,13 +3,14 @@ const tg = window.Telegram.WebApp;
 tg.expand(); // Развернуть на весь экран
 
 const user = tg.initDataUnsafe?.user;
-const greetingElement = document.getElementById('greeting');
-        
-if (user && user.first_name) {
-     greetingElement.innerText = `Добро пожаловать, ${user.first_name}!`;
-} else {
-    greetingElement.innerText = `Ассалам алейкум, Гость!`;
-    }
+
+const greetings = ["Привет", "Рады видеть", "Ассалам алейкум", "Будь добрее сегодня"];
+const greetingEl = document.getElementById("greeting");
+if (greetingEl) {
+    const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+    greetingEl.textContent = randomGreeting;
+}
+
 
         // Функция переключения страниц
 function openPage(pageNum, btn) {
