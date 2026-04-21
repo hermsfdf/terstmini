@@ -71,9 +71,11 @@
         }
 
         .content-container {
-            padding: 10px;
-            width: 90%;
-            max-width 400px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px
+            padding: 20px 10px;
+            justify-content: center;
         }
 
         .card {
@@ -81,6 +83,8 @@
             border-radius: 15px;
             overflow: hidden;
             margin_bottom: 20px;
+            width: 100%;
+            max-width: 350px;
             border: 1px solid #333;
             text-align: left;
         }
@@ -197,26 +201,12 @@
     
         </div>
     </div>
-            </div>      
-        </div>
-    </div>
-    
+
     <div id="page2" class="page">
-        <div class="content-container">
-            
-            <div class="card">
-                <img src="https://assets.lis-skins.com/market_images/11591_b.png" alt="Товар">
-                
-                <div class="card-info">
-                    <h3 class="card-title">Souvenir AWP | Dragon Lore</h3>
-                    <p class="card-description">
-                        Float: 0.288684, Тип: Снайперск1 винтовка.
-                    </p>
-                    <div class="card-price">1 500 ₽</div>
-                    <button class="buy-btn" onclick="alert('Товар добавлен в корзину!')">Купить</button>
-                </div>
-            </div>
-    
+        <div style="text-align: center;">
+            <h2 style="font-size: 2rem;">Кошелек</h2>
+            <p style="font-size: 3rem;">0.00 ₽</p>
+            <button style="border: 1px solid #fff; background: none; color: white; padding: 10px;">Пополнить</button>
         </div>
     </div>
     
