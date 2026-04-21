@@ -245,3 +245,26 @@
 
 </body>
 </html>
+
+
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDrlSx_mVM0N5fhbmn_gc43sdFcEs4kpPU",
+    authDomain: "testedminiapp.firebaseapp.com",
+    projectId: "testedminiapp",
+    storageBucket: "testedminiapp.firebasestorage.app",
+    messagingSenderId: "711412887944",
+    appId: "1:711412887944:web:0571af6674d19eee294a3d"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Прокидываем функции в глобальную видимость, чтобы script.js их видел
+  window.db = db;
+  window.dbFunctions = { collection, addDoc, getDocs, query, orderBy };
+</script>
