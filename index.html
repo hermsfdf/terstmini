@@ -69,16 +69,15 @@
         <button id="closeBtn">Закрыть приложение</button>
     </div>
 
-    <div id="mainMenu">
-        <h2>Основное меню</h2>
-        <button onclick="openSecond()">Открыть второе меню</button>
+    <div class="menu">
+        <button onclick="showTab('home')">Главная</button>
+        <button onclick="showTab('profile')">Профиль</button>
     </div>
-    <div id="secondMenu">
-        <h2>Привет</h2>
-        <button onclick="back()">Назад</button>
-    </div>
-    
 
+    <div id="home" class="tab">Это главное меню</div>
+    <div id="profile" class="tab" style="display:none;">Это второе меню</div>
+    
+    
     <script src="script.js"></script>
 </body>
 </html>
