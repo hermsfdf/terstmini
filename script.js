@@ -1,21 +1,24 @@
         // Инициализация Telegram WebApp
 const tg = window.Telegram.WebApp;
-const ADMIN_ID = 1378112233;
+const ADMIN_ID = 1378112233; // Твой ID
 
-tg.expand(); // Развернуть на весь экран
+tg.expand();
 
-const user = tg.initDataUnsafe?.user;
-const userNameEl = document.getElementById("username");
-if (user && userNameEl) {
-    userNameEl.innerText = user.first_name;
-}
-// Проверка на админа
-if (user && user.id === ADMIN_ID) {
+// Ждем полной загрузки страницы, прежде чем искать кнопку
+window.addEventListener('load', () => {
+    const user = tg.initDataUnsafe?.user;
     const adminBtn = document.getElementById('admin-add-btn');
-    if (adminBtn) {
-        adminBtn.style.display = 'block';
+
+    console.log("User ID:", user?.id); // Это поможет тебе увидеть свой ID в консоли (если подключен дебаг)
+
+    // ПРОВЕРКА: Если зашел админ ИЛИ если мы в обычном браузере (для теста)
+    if (user?.id === ADMIN_ID || !user) {
+        if (adminBtn) {
+            adminBtn.style.setProperty('display', 'block', 'important');
+            console.log("Кнопка админа включена");
+        }
     }
-}
+});
 const greetings = ["Привет", "Рады видеть", "Ассалам алейкум", "Будь добрее сегодня", "Вы находитесь в уголовном розыске Уганды", "Ну купи скинчик"];
 const greetingEl = document.getElementById("greeting");
 if (greetingEl) {
