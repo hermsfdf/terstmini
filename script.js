@@ -25,7 +25,7 @@ tg.MainButton.onClick(() => {
 function showTab(tab) {
     document.getElementById('home').style.display = 'none';
     document.getElementById('profile').style.display = 'none';
-    document.GetElementById(tab).style.display = 'block';
+    document.getElementById(tab).style.display = 'block';
 }
 
 const vibeBtn = document.getElementById("vibeBtn")
