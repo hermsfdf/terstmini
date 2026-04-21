@@ -26,7 +26,7 @@ function goToPage(pageId) {
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => page.style.display = 'none');
 
-    const activePage = document.g etElementById(pageId);
+    const activePage = document.getElementById(pageId);
     if (activePage) {
         activePage.style.display = 'block';
     }
