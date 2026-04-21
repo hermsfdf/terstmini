@@ -11,7 +11,7 @@ if (user && userNameEl) {
 
 const greetings = ["Привет", "Рады видеть", "Ассалам алейкум", "Будь добрее сегодня"];
 const greetingEl = document.getElementById("greeting");
-if (greeting) {
+if (greetingEl) {
     const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
     greetingEl.textContent = randomGreeting;
 }
@@ -26,7 +26,7 @@ function goToPage(pageId) {
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => page.style.display = 'none');
 
-    const activePage = document.GetElementById(pageId);
+    const activePage = document.g etElementById(pageId);
     if (activePage) {
         activePage.style.display = 'block';
     }
@@ -44,7 +44,7 @@ const vibeBtn = document.getElementById("vibeBtn")
 if (vibeBtn) {
     vibeBtn.addEventListener("click", () => {
         tg.showAlert("В разработке");
-        tg.HapticFeedBack.notificationOccurred('success');
+        tg.HapticFeedback.notificationOccurred('success');
     });
 }
 
