@@ -6,7 +6,7 @@ const user = tg.initDataUnsafe?.user;
 const greetingElement = document.getElementById('greeting');
         
 if (user && user.first_name) {
-     greetingElement.innerText = `Ассалам алейкум, ${user.first_name}!`;
+     greetingElement.innerText = `Добро пожаловать, ${user.first_name}!`;
 } else {
     greetingElement.innerText = `Ассалам алейкум, Гость!`;
     }
