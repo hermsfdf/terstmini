@@ -3,6 +3,10 @@ const tg = window.Telegram.WebApp;
 tg.expand(); // Развернуть на весь экран
 
 const user = tg.initDataUnsafe?.user;
+const userNameEl = document.getElementById("username");
+if (user && userNameEl) {
+    userNameEl.innerText = user.first_name;
+}
 
 const greetings = ["Привет", "Рады видеть", "Ассалам алейкум", "Будь добрее сегодня"];
 const greetingEl = document.getElementById("greeting");
