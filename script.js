@@ -30,14 +30,6 @@ function goToPage(pageId) {
     if (activePage) {
         activePage.style.display = 'block';
     }
-
-    if (pageId === 'page1') {
-        tg.BackButton.hide();
-    } else {
-        tg.BackButton.hide();
-    }
-}
-
     
     
 const vibeBtn = document.getElementById("vibeBtn")
