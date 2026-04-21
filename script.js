@@ -102,7 +102,10 @@ function toggleAdminModal() {
     modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
 }
 
+// Функция СОХРАНЕНИЯ в Firebase
 async function addNewItem() {
+    const { collection, addDoc } = window.dbFunctions;
+    
     const img = document.getElementById('item-img').value;
     const title = document.getElementById('item-title').value;
     const desc = document.getElementById('item-desc').value;
@@ -111,29 +114,51 @@ async function addNewItem() {
     if(!img || !title || !price) return alert("Заполни поля");
 
     try {
-        // 1. Отправляем в базу (добавили desc, чтобы описание сохранялось)
-        await db.collection('products').add({
-            title: title,
-            price: price,
-            img: img,
-            desc: desc,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp() // Чтобы товары шли по порядку
+        await addDoc(collection(window.db, "products"), {
+            img, title, desc, price,
+            createdAt: Date.now() // для сортировки
         });
-
-        alert("Товар успешно сохранен в базе!");
         
-        // 2. Закрываем модалку и чистим поля
         toggleAdminModal();
+        // Очистка полей
         ['item-img', 'item-title', 'item-desc', 'item-price'].forEach(id => document.getElementById(id).value = '');
-
-        // 3. (Опционально) Можно вызвать функцию загрузки товаров, чтобы новый сразу появился
-        // loadProducts(); 
-
-    } catch (error) {
-        console.error("Ошибка при добавлении:", error);
-        alert("Произошла ошибка при сохранении!");
+        
+        // Сразу обновляем список на экране
+        loadProducts(); 
+    } catch (e) {
+        alert("Ошибка базы данных: " + e.message);
     }
 }
+
+// Функция ЗАГРУЗКИ из Firebase
+async function loadProducts() {
+    const { collection, getDocs, query, orderBy } = window.dbFunctions;
+    const container = document.querySelector('.content-container');
+    
+    // Очищаем контейнер перед загрузкой (чтобы не дублировать)
+    container.innerHTML = ''; 
+
+    const q = query(collection(window.db, "products"), orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(q);
+    
+    querySnapshot.forEach((doc) => {
+        const item = doc.data();
+        const cardHtml = `
+            <div class="card">
+                <img src="${item.img}" alt="${item.title}">
+                <div class="card-info">
+                    <h3 class="card-title">${item.title}</h3>
+                    <p class="card-description">${item.desc}</p>
+                    <div class="card-price">${item.price}</div>
+                    <button class="buy-btn" onclick="alert('Куплено!')">Купить</button>
+                </div>
+            </div>`;
+        container.insertAdjacentHTML('beforeend', cardHtml);
+    });
+}
+
+// Запускаем загрузку при старте
+window.addEventListener('load', loadProducts);
 
 // Инициализация первой страницы
 goToPage('page1');
