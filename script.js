@@ -1,8 +1,8 @@
+const tg = window.Telegram.WebApp;
+
 tg.ready();
 tg.expand();
 
-
-const tg = window.Telegram.WebApp;
 const user = tg.initDataUnsafe?.user;
 const userNameEl = document.getElementById("username");
 if (user && userNameEl) {
