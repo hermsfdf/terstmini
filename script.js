@@ -22,12 +22,24 @@ tg.MainButton.onClick(() => {
     tg.showAlert("Вы нажали на кнопку");
 });
 
-function showTab(tab) {
-    document.getElementById('home').style.display = 'none';
-    document.getElementById('profile').style.display = 'none';
-    document.getElementById(tab).style.display = 'block';
+function goToPage(pageId) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.style.display = 'none');
+
+    const activePage = document.GetElementById(pageId);
+    if (activePage) {
+        activePage.style.display = 'block';
+    }
+
+    if (pageId === 'page1') {
+        tg.BackButton.hide();
+    } else {
+        tg.BackButton.hide();
+    }
 }
 
+    
+    
 const vibeBtn = document.getElementById("vibeBtn")
 if (vibeBtn) {
     vibeBtn.addEventListener("click", () => {
@@ -42,10 +54,5 @@ if (closeBtn) {
         tg.close()
     });
 }
-
-tg.BackButton.show();
-tg.BackButton.onClick(() => {
-    tg.openTelegramLink("https://t.me/FlarionMinecraft_Bot");
-});
 
 tg.setHeaderColor('secondary_bg_color');
