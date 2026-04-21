@@ -135,28 +135,32 @@ async function loadProducts() {
     const { collection, getDocs, query, orderBy } = window.dbFunctions;
     const container = document.querySelector('.content-container');
     
-    // Очищаем контейнер перед загрузкой (чтобы не дублировать)
+    if (!container) return;
     container.innerHTML = ''; 
 
-    const q = query(collection(window.db, "products"), orderBy("createdAt", "desc"));
-    const querySnapshot = await getDocs(q);
-    
-    querySnapshot.forEach((doc) => {
-        const item = doc.data();
-        const cardHtml = `
-            <div class="card">
-                <img src="${item.img}" alt="${item.title}">
-                <div class="card-info">
-                    <h3 class="card-title">${item.title}</h3>
-                    <p class="card-description">${item.desc}</p>
-                    <div class="card-price">${item.price}</div>
-                    <button class="buy-btn" onclick="alert('Куплено!')">Купить</button>
-                </div>
-            </div>`;
-        container.insertAdjacentHTML('beforeend', cardHtml);
-    });
+    try {
+        // Сортируем: новые сверху
+        const q = query(collection(window.db, "products"), orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
+        
+        querySnapshot.forEach((doc) => {
+            const item = doc.data();
+            const cardHtml = `
+                <div class="card">
+                    <img src="${item.img}" alt="${item.title}">
+                    <div class="card-info">
+                        <h3 class="card-title">${item.title}</h3>
+                        <p class="card-description">${item.desc}</p>
+                        <div class="card-price">${item.price}</div>
+                        <button class="buy-btn" onclick="alert('Товар: ${item.title}')">Купить</button>
+                    </div>
+                </div>`;
+            container.insertAdjacentHTML('beforeend', cardHtml);
+        });
+    } catch (e) {
+        console.error("Ошибка загрузки:", e);
+    }
 }
-
 // Запускаем загрузку при старте
 window.addEventListener('load', loadProducts);
 
