@@ -29,6 +29,21 @@
             height: 100vh;
             gap: 20px;
         }
+
+        button {
+            display: block;
+            width: 80%;          /* не на всю ширину */
+            max-width: 300px;   /* ограничение */
+            margin: 10px auto;  /* ВОТ ЭТО центрирует */
+            
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background-color: var(--btn);
+            color: var(--btn-text);
+            font-weight: bold;
+            cursor: pointer;
+        }
         
         .card {
             background: rgba(0,0,0,0.05);
