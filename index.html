@@ -23,50 +23,34 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: column;
-            padding-top: 10;
+            padding-top: 50px; /* чтобы не перекрывалось */
             height: 100vh;
             gap: 20px;
         }
-
+        
         .card {
+            background: rgba(0,0,0,0.05);
+            padding: 10px;
+            border-radius: 15px;
+            width: 50%;
+            text-align: center;
+        }
+        
+        .page {
+            background: rgba(5,2,1,0.05);
+            padding: 10px;
+            border-radius: 10px;
+            width: 50%;
+            text-align: center;
+        }
+        
+        .hint {
             position: fixed;
             top: 10px;
             left: 50%;
             transform: translateX(-50%);
-            color: var(--card);
-            font-size: 0.8em
-        }
-
-        .page {
-            pisition: fixed
-            background: rgba(5,2,1,5.05);
-            padding: 5px;
-            border-radius: 10px;
-            width: 50%;
-            text-aling: center;
-        }
-
-        button {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 10px;
-            background-color: var(--btn);
-            color: var(--btn-text);
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .hint {
-            positio: fixed;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
             color: var(--hint);
-            font-size: 0.8em
+            font-size: 0.9em;
         }
 
             
