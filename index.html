@@ -69,6 +69,60 @@
             color: #00d2ff;
             transform: scale(1.2);
         }
+
+        .content-container {
+            padding: 10px;
+            width: 90%;
+            max-width 400px;
+        }
+
+        .card {
+            background: #1c1c1e;
+            border-radius: 15px;
+            overflow; hidden;
+            margin_bottom; 20px
+            border: 1px solid #333;
+            text-align: left;
+        }
+
+        .card img {
+            width; 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-title {
+            font-size: 1.4rem;
+            margin: 0 0 5px 0;
+            color: #00d2ff;
+        }
+        .card-info {
+            padding: 15px;
+        }
+        .card-description {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin: 0 0 15px 0;
+            line-height: 1.4;
+        }
+
+        .card-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .buy-btn {
+            width: 100%;
+            background: #00d2ff;
+            color: #000;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        
     </style>
 </head>
 <body>
@@ -79,12 +133,24 @@
     </header>
 
     <div id="page1" class="page active">
-        <div style="text-align: center;">
-            <h2 style="font-size: 2rem; color: #00d2ff;">Витрина</h2>
-            <div style="background: #1a1a1a; padding: 15px; border-radius: 10px; margin-top: 10px;">
-                <p style="font-size: 1.2rem;">🍎 Яблоки - 100₽</p>
-                <button style="background: #00d2ff; border: none; padding: 10px; border-radius: 5px;">Купить</button>
+        <div class="content-container">
+            
+            <div class="card">
+                <img src="https://via.placeholder.com/400x200" alt="Товар">
+                
+                <div class="card-info">
+                    <h3 class="card-title">Название товара</h3>
+                    <p class="card-description">
+                        Это краткое описание товара. Оно должно быть лаконичным и понятным для пользователя.
+                    </p>
+                    <div class="card-price">1 500 ₽</div>
+                    <button class="buy-btn" onclick="alert('Товар добавлен в корзину!')">Купить</button>
+                </div>
             </div>
+    
+        </div>
+    </div>
+            </div>      
         </div>
     </div>
     
