@@ -1,5 +1,7 @@
         // Инициализация Telegram WebApp
 const tg = window.Telegram.WebApp;
+const ADMIN_ID = 1378112233;
+
 tg.expand(); // Развернуть на весь экран
 
 const user = tg.initDataUnsafe?.user;
