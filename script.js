@@ -24,7 +24,17 @@ function goToPage(pageId) {
     if (activePage) {
         activePage.style.display = 'block';
     }
-    
+    if (pageId === 'page1') {
+            tg.BackButton.hide();
+        } else {
+            tg.BackButton.show();
+        }
+    }
+
+// Обработка кнопки "Назад" в интерфейсе Telegram
+tg.onEvent('backButtonClicked', () => {
+    goToPage('page1');
+});
     
 const vibeBtn = document.getElementById("vibeBtn")
 if (vibeBtn) {
