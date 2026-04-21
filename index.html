@@ -186,8 +186,6 @@
     </header>
 
     <div id="page1" class="page active">
-        <button id="admin-add-btn" onclick="toggleAdminModal()">+</button>
-    
         <div class="content-container">
             <div class="card">
                 <img src="https://assets.lis-skins.com/market_images/11591_b.png" alt="Товар">
@@ -199,65 +197,45 @@
                 </div>
             </div>
         </div>
-    
-        <div id="admin-modal" class="modal">
-            <div class="modal-content">
-                <h3>Добавить товар</h3>
-                <input type="text" id="item-img" placeholder="Ссылка на картинку">
-                <input type="text" id="item-title" placeholder="Название">
-                <input type="text" id="item-desc" placeholder="Описание">
-                <input type="text" id="item-price" placeholder="Цена">
-                <div style="display: flex; gap: 10px;">
-                    <button class="buy-btn" onclick="addNewItem()">Добавить</button>
-                    <button class="buy-btn" style="background: #ff4444;" onclick="toggleAdminModal()">Отмена</button>
-                </div>
-            </div>
-        </div>
     </div>
-        
+
     <div id="page2" class="page">
-        <div style="text-align: center;">
-            <h2 style="font-size: 2rem;">Кошелек</h2>
-            <p style="font-size: 3rem;">0.00 ₽</p>
-            <button style="border: 1px solid #fff; background: none; color: white; padding: 10px;">Пополнить</button>
-        </div>
+        <div style="text-align: center;"><h2>Кошелек</h2><p>0.00 ₽</p></div>
     </div>
-    
     <div id="page3" class="page">
-        <div style="text-align: center;">
-            <h2 style="font-size: 2rem;">Кошелек</h2>
-            <p style="font-size: 3rem;">0.00 ₽</p>
-            <button style="border: 1px solid #fff; background: none; color: white; padding: 10px;">Пополнить</button>
-        </div>
+        <div style="text-align: center;"><h2>Заказы</h2><p>Пусто</p></div>
     </div>
-    
     <div id="page4" class="page">
-        <div style="text-align: center;">
-            <h2 style="font-size: 2rem;">Статистика</h2>
-            <p style="font-size: 1rem;">Тут будут графики ваших покупок</p>
-        </div>
+        <div style="text-align: center;"><h2>Статистика</h2></div>
     </div>
-    
     <div id="page5" class="page">
-        <div style="text-align: center;">
-            <h2 style="font-size: 2rem;">Настройки</h2>
-            <p style="font-size: 1rem;">Уведомления: ВКЛ</p>
-            <p style="font-size: 1rem;">Язык: Русский</p>
+        <div style="text-align: center;"><h2>Настройки</h2></div>
+    </div>
+
+    <button id="admin-add-btn" onclick="toggleAdminModal()">+</button>
+
+    <div id="admin-modal" class="modal">
+        <div class="modal-content">
+            <h3>Добавить товар</h3>
+            <input type="text" id="item-img" placeholder="Ссылка на картинку">
+            <input type="text" id="item-title" placeholder="Название">
+            <input type="text" id="item-desc" placeholder="Описание">
+            <input type="text" id="item-price" placeholder="Цена">
+            <div style="display: flex; gap: 10px;">
+                <button class="buy-btn" onclick="addNewItem()">Добавить</button>
+                <button class="buy-btn" style="background: #ff4444;" onclick="toggleAdminModal()">Отмена</button>
+            </div>
         </div>
     </div>
 
     <nav>
-        <button class="nav-btn" onclick="goToPage('page1')">🛒</button>
+        <button class="nav-btn active" onclick="goToPage('page1')">🛒</button>
         <button class="nav-btn" onclick="goToPage('page2')">📦</button>
         <button class="nav-btn" onclick="goToPage('page3')">💳</button>
         <button class="nav-btn" onclick="goToPage('page4')">📊</button>
         <button class="nav-btn" onclick="goToPage('page5')">⚙️</button>
     </nav>
 
-    
-    
     <script src="script.js"></script>
-
-    
 </body>
 </html>
