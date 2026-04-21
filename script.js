@@ -8,7 +8,7 @@ if (user && userNameEl) {
     userNameEl.innerText = user.first_name;
 }
 
-const greetings = ["Привет", "Рады видеть", "Ассалам алейкум", "Будь добрее сегодня"];
+const greetings = ["Привет", "Рады видеть", "Ассалам алейкум", "Будь добрее сегодня", "Вы находиться в уголовном розыске"];
 const greetingEl = document.getElementById("greeting");
 if (greetingEl) {
     const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
