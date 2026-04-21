@@ -69,14 +69,16 @@
         <button id="closeBtn">Закрыть приложение</button>
     </div>
 
-    <div id="mainMenu">
-        <h2>Основное меню</h2>
-        <button on click="openSecound()">Открыть второе меню</button>
+    <div id="page1" class="page">
+        <h2>Главное меню</h2>
+        <button class="menu-btn" onclick="goToPage('page2')">Открыть настройки</button>
+        <button class="menu-btn" on click="tg.showAlert('Кнопка 1 нажата')">Действие 1</button>
     </div>
 
-    <div id="secondMenu" style="display:none;">
-        <h2>Привет</h2>
-        <button on click="back()">Назад</button>
+    <div id="page2" class="page" style="display: none;">
+        <h2>Настройки</h2>
+        <button class="menu_btn" onclick=goToPage('page1')">Назад в меню</button>
+        <button class="menu_btn" id=vibeBtn">Вибрация</button>
     </div>
     
     <script src="script.js"></script>
