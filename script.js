@@ -75,5 +75,42 @@ function updateNavButtons(pageId) {
     });
 }
 
+function toggleAdminModal() {
+        const modal = document.getElementById('admin-modal');
+        modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+}
+
+function addNewItem() {
+        const img = document.getElementById('item-img').value;
+        const title = document.getElementById('item-title').value;
+        const desc = document.getElementById('item-desc').value;
+        const price = document.getElementById('item-price').value;
+
+        if(!img || !title || !price) return alert("Заполни поля");
+
+        const container = document.querySelector('#page1 .content-container');
+        const cardHtml = `
+                <div class="card">
+                    <img src="${img}" alt="${title}">
+                    <div class="card-info">
+                        <h3 class="card-title">${title}</h3>
+                        <p class="card-description">${desc}</p>
+                        <div class="card-price">${price}</div>
+                        <button class="buy-btn" onclick="alert('Добавлено!')">Купить</button>
+                    </div>
+                </div>
+            `;
+
+        container.insertAdjacentHTML('afterbegin', cardHtml);
+        toggleAdminModal();
+
+        document.getElementById('item-img').value = '';
+        document.getElementById('item-title').value = '';
+        document.getElementById('item-desc').value = '';
+        document.getElementById('item-price').value = '';
+}
+        
+
 // Инициализация первой страницы при запуске
 goToPage('page1');
+
